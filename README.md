@@ -97,10 +97,10 @@ Each lab is a **two-hour build**, marked out of 10, *in the room, on the day*:
 | | Marks | What it is |
 |--|:--:|--|
 | ✅ **Verify** | 4 | Numerical questions seeded from **your** student ID — nobody has the same numbers |
-| 🔨 **Task** | 4 | The implementation, checked against a reference |
+| 🔨 **Task** | 4 | Implementation on real data, checked against a reference |
 | ⚡ **Stretch** | 2 | Go beyond. Surprise us. |
 
-🔥 Marks are awarded **during the session**. Miss the session, and that week scores **zero** — there is no catch-up. Your standing shows on the **class leaderboard** under the alias you pick in Week 1.
+🔥 Marks are awarded **only during the session**, through demonstration and viva. Miss the session and that week is capped at **50% of the marks** — so show up, and show up ready. Your standing shows on the **class leaderboard** under the alias you pick in Week 1.
 
 ---
 
