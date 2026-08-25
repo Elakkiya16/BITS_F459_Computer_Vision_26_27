@@ -1,0 +1,6 @@
+# BITS F459 Computer Vision - added in Week 4 (deep learning)
+# pip install -r setup/requirements-dl.txt
+# CPU-only wheels are fine for Weeks 4-5; use Colab's GPU from Week 6.
+-r requirements.txt
+torch>=2.2
+torchvision>=0.17
