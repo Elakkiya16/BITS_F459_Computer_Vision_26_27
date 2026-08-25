@@ -5,9 +5,9 @@
 **BITS F459 · Computer Vision · Week 1**
 
 ![Time](https://img.shields.io/badge/⏱%20time-in%20session-00D9FF?style=for-the-badge)
-![Marks](https://img.shields.io/badge/marks-10-FF6B6B?style=for-the-badge)
+![Marks](https://img.shields.io/badge/marks-none%20·%20demo%20lab-FF6B6B?style=for-the-badge)
 ![Runs](https://img.shields.io/badge/runs%20in-Colab%20·%20no%20install-FFD93D?style=for-the-badge)
-![Submit](https://img.shields.io/badge/submit-your%20lab%20repo-6BCB77?style=for-the-badge)
+![Save](https://img.shields.io/badge/save%20to-your%20lab%20repo-6BCB77?style=for-the-badge)
 
 ### ▶️ **[OPEN THE NOTEBOOK IN COLAB](https://colab.research.google.com/github/Elakkiya16/BITS_F459_Computer_Vision_26_27/blob/main/labs/lab01/lab01_selfie_studio.ipynb)**
 
@@ -69,7 +69,7 @@ Common causes: you're in Safari (use **Chrome**), you clicked *Block* on the per
 
 ## 💾 How to save your work to your repository
 
-Your notebook lives in Google Drive while you work. It only counts once it's in **your GitHub lab repo**.
+Your notebook lives in Google Drive while you work. Getting it into **your GitHub lab repo** is the skill we're practising today.
 
 ### In Colab: **File → Save a copy in GitHub**
 
@@ -87,7 +87,7 @@ Click **OK**.
 
 > 🔐 **First time only:** Colab asks permission to access your GitHub account. Click **Authorize** in the popup. If nothing happens, your browser blocked it — allow popups for `colab.research.google.com` and try again.
 
-> ⚠️ **Run every cell before you save.** Colab saves the notebook *with its outputs*, so your selfie and your results are stored inside the file. A notebook saved with empty outputs looks like you did nothing.
+> ⚠️ **Run every cell before you save.** Colab saves the notebook *with its outputs*, so your selfie and your results are stored inside the file. Save it early and it lands on GitHub blank.
 
 <details>
 <summary>🔁 <b>Alternative: download and push from your laptop</b></summary>
@@ -110,17 +110,13 @@ git push
 
 ---
 
-## 📤 Submitting for evaluation
+## 📤 Putting it in your repo
 
-**Your last push before the session ends is your submission.** Nothing to email, nothing to upload anywhere else.
+This lab is a **warm-up — there are no marks.** It exists so that by the end of the session you have
+proved three things work: your Colab, your GitHub repo, and the link between them.
 
-Marks are awarded **in the session**, by demonstration and viva — I come round, you show me your screen and explain what you did. So:
-
-- ✅ Have the notebook **open with your results visible** when I reach you
-- ✅ Be ready to answer *why*, not just *what* — "why does the edge kernel make flat areas black?" is a fair question
-- ✅ Push **before** you leave the room
-
-> ⚠️ A missed session carries **50% lesser marks** for that week. Assessment happens here, with your work in front of you.
+Saving it is the point. From next week the same three steps are how every lab is submitted, so get
+them working now while there is nothing at stake.
 
 ### ✅ Before you leave
 
@@ -129,7 +125,9 @@ Marks are awarded **in the session**, by demonstration and viva — I come round
 - [ ] The final grid rendered with your face in it
 - [ ] Saved to `BITS-F459-Computer-Vision/f459-<your BITS ID>` at `labs/lab01/`
 - [ ] Opened the repo on GitHub and **checked the file is actually there**
-- [ ] Shown your screen and answered the viva
+
+That last tick is the one that matters. If the notebook is sitting in your repo with your face in it,
+everything is wired up correctly and next week will be easy.
 
 ---
 
