@@ -20,7 +20,7 @@
 You need five things working, in this order:
 
 ```
-1️⃣ GitHub account  →  2️⃣ Classroom repo  →  3️⃣ Python  →  4️⃣ Packages  →  5️⃣ ALL OK + commit
+1️⃣ GitHub account  →  2️⃣ Your lab repo  →  3️⃣ Python  →  4️⃣ Packages  →  5️⃣ ALL OK + commit
 ```
 
 If all five work, you're done. The rest of this page is how to get there and what to do when one of them fights you.
@@ -82,31 +82,34 @@ Runs in the browser. Nothing to install.
    - Your **username is public and permanent-ish**. Pick something you'd put on a CV. `elakkiya-r` ✅ · `xX_cvking_Xx` ❌
 2. Get the **student pack** (free, worth doing): **[education.github.com/pack](https://education.github.com/pack)** — Copilot, free private repos and more, verified with your BITS ID.
 3. **Choose your leaderboard alias.** This is the name the whole class sees on the weekly leaderboard. It is *not* your GitHub username and *not* your real name — that's the point. Keep it clean and keep it for the semester.
+4. **Fill the course onboarding form** (link on the LMS) with your BITS ID, name, **GitHub username** and alias.
 
-   > 🏷️ Write your alias down now. You'll enter it in step 5.
+   > ⚠️ The form wants your **username** — `aisha-rahman` — not your email and not `https://github.com/aisha-rahman`. A wrong username means no repo, and no repo means no submission.
+   >
+   > 🏷️ Write your alias down. You'll type it again in step 5.
 
 </details>
 
-## 2️⃣ Join the GitHub Classroom
+## 2️⃣ Claim your lab repository
 
 <details open>
-<summary><b>This creates your personal repo for the semester</b></summary>
+<summary><b>Your private repo for the whole semester</b></summary>
 
 <br/>
 
-1. Open the **Classroom invite link** shared in the session (and on the LMS).
-2. Pick your name from the roster so your repo is linked to you. ⚠️ If you skip this, your submissions land nowhere.
-3. Accept the assignment. GitHub creates a private repo just for you, named something like `bits-f459-labs-<your-username>`.
-4. Clone it:
+Once you've submitted the form, I create a **private repository just for you** inside the course organisation, named `f459-<your BITS ID>`. Only you, me and the TA can see it.
+
+1. **Accept the invitation.** GitHub emails you an invite to the organisation. Click it. If you missed the email, go to **[github.com/BITS-F459-CV](https://github.com/BITS-F459-CV)** and accept it there, or check [github.com/notifications](https://github.com/notifications).
+2. **Clone it.** Open your repo on GitHub, press the green **Code** button, copy the HTTPS URL:
 
    ```bash
-   git clone https://github.com/<classroom-org>/bits-f459-labs-<your-username>.git
-   cd bits-f459-labs-<your-username>
+   git clone https://github.com/BITS-F459-CV/f459-2023a7ps1234u.git
+   cd f459-2023a7ps1234u
    ```
 
-   The exact URL is on your repo's green **Code** button.
+   Use *your* repo name, not the example.
 
-5. Tell git who you are (once per machine):
+3. Tell git who you are (once per machine):
 
    ```bash
    git config --global user.name  "Your Name"
@@ -220,9 +223,9 @@ git commit -m "Lab 0 setup complete"
 git push
 ```
 
-✅ **When that push succeeds, Lab 0 is done.** That one file proves Python runs, the packages import, OpenCV actually computes, git works, and your Classroom repo is live — the whole chain, in one shot.
+✅ **When that push succeeds, Lab 0 is done.** That one file proves Python runs, the packages import, OpenCV actually computes, git works, and your lab repo is live — the whole chain, in one shot.
 
-<sub>On Colab: run the same script in a cell with `!python verify_setup.py --id ... --alias ...` after cloning this repo, then download `setup_report.txt` and add it to your repo through the GitHub web UI.</sub>
+<sub>On Colab: `!git clone` your lab repo, run `!python setup/verify_setup.py --id ... --alias ...` in a cell, then download `setup_report.txt` and add it to your repo through the GitHub web UI (Add file -> Upload files).</sub>
 
 </details>
 
@@ -234,7 +237,8 @@ Print this, tick it, bring it:
 
 - [ ] GitHub account exists and I know my username
 - [ ] Leaderboard alias chosen
-- [ ] Classroom assignment accepted, repo cloned
+- [ ] Onboarding form submitted with my GitHub username
+- [ ] Org invitation accepted, my repo cloned
 - [ ] `git config` done with my GitHub email
 - [ ] Python 3.10+ responds to `python --version`
 - [ ] VS Code with Python + Jupyter extensions

@@ -1,0 +1,14 @@
+# instructor-only material must never reach the student repo
+instructor/
+roster*.csv
+provisioning-log-*.csv
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+.DS_Store
+setup_report.txt
+data/
