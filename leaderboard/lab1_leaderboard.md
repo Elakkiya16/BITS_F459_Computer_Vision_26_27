@@ -2,7 +2,7 @@
 
 Aliases only — no names, no marks.
 
-**Lab 1** · 11 of 27 submitted (41%) · ⭐ = mirror bonus · updated 28 Aug 2026, 10:18
+**Lab 1** · 11 of 27 submitted (41%) · ⭐ = mirror bonus · updated 28 Aug 2026, 10:25
 
 | | Submitted |
 |--|-----------|
