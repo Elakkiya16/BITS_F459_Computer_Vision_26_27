@@ -8,7 +8,7 @@ Everyone compressed the same class photo. A file counts only if the picture it
 rebuilds still scores at least 30 dB against the original, measured at full size.
 The plain JPEG everyone started from was **11,640 bytes**.
 
-**15 of 41 on the board** · updated 07 Sep 2026, 21:39
+**15 of 41 on the board** · updated 07 Sep 2026, 21:49
 
 | # | Alias | Bytes | Times smaller | Quality |
 |--:|:--|--:|--:|--:|
@@ -27,3 +27,21 @@ The plain JPEG everyone started from was **11,640 bytes**.
 | 13 | `Vismaya U` | 11,616 | 1.0x | 31.37 dB |
 | 14 | `Lavanya` | 11,616 | 1.0x | 31.37 dB |
 | 15 | `Yash` | 11,616 | 1.0x | 31.37 dB |
+
+### Submitted, but the file did not count
+
+The rebuilt picture has to score at least 30 dB. These came in under it,
+so the file is smaller but the picture is too damaged to compare.
+
+| Alias | Quality reached |
+|:--|--:|
+| `Atharva_Karanjkar` | 30.24 dB |
+| `Krish` | 29.89 dB |
+| `KarishmaDoshi` | 29.89 dB |
+
+### No Lab 2 notebook found
+
+23 of you have nothing in the repo that this can be run on.
+Check that your notebook is in your repo and that you ran every cell.
+
+`12345678` `AbhishekB` `Almas` `Anantha Krishnan` `Angad Sekhon` `Blurre` `CV_leaderboard` `CodeOrchid` `KDP49` `Kirtika Prakash` `Mac2707` `Mohammed Owais Qadri` `Nichirin` `Prometheus` `Riyannnn` `Sashank` `Tantan` `Zeshan` `aryan107` `diyaa` `himesh` `skygazer2169` `vanessabajaj`
