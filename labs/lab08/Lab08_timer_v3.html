@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab 8 Timer</title>
+<style>
+:root{--navy:#011E4B;--gold:#FAB001;--sky:#87C6E9;--red:#EE1C23;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--white);color:var(--navy);font-family:"Segoe UI",Inter,Helvetica,Arial,sans-serif}
+#app{height:100vh;display:flex;flex-direction:column;padding:2.2vh 2.5vw}
+header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:.5vh solid var(--navy);padding-bottom:1vh}
+header h1{font-size:3vh;font-weight:800}
+#now{font-size:3vh;font-weight:700}
+main{flex:1;display:flex;gap:2vw;margin-top:2.5vh;min-height:0}
+#left{flex:1.55;border:2px solid var(--navy);border-left:1.2vw solid var(--gold);padding:2.5vh 2vw;display:flex;flex-direction:column;min-height:0}
+#title{font-size:4.6vh;font-weight:800;line-height:1.15}
+#sub{font-size:2.4vh;font-style:italic;color:#1d5f8a;margin:.8vh 0 2.2vh;font-weight:600}
+#lines{list-style:none;font-size:3vh;line-height:1.4;flex:1}
+#lines li{margin-bottom:1.4vh;padding-left:2.2vw;text-indent:-2.2vw}
+#lines li:before{content:"\25B8";color:var(--gold);display:inline-block;width:2.2vw;text-indent:0}
+#print{border:2px solid var(--sky);padding:1.4vh 1.2vw;font-size:2.3vh}
+#print b{margin-right:.8vw}#print code{font-family:Consolas,Menlo,monospace}
+#right{flex:1;border:2px solid var(--navy);border-top:1.2vh solid var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2vh 1.5vw}
+#mins{font-size:3vh;font-weight:700}
+#count{font-size:20vh;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;margin:1vh 0}
+#count.warn{color:var(--red)}
+#ends{font-size:3.2vh;font-weight:800;color:var(--red)}
+#barwrap{width:90%;height:4.5vh;border:2px solid var(--navy);margin-top:3vh}
+#bar{height:100%;background:var(--navy);width:100%}
+#next{font-size:2.3vh;margin-top:2.5vh;font-weight:600;text-align:center}
+#strip{display:flex;gap:.7vw;margin-top:2.5vh}
+#strip div{flex:1;text-align:center;font-weight:700;font-size:2.2vh;padding:1vh 0;border:2px solid var(--navy);border-radius:.8vh}
+#strip .done{background:var(--navy);color:#fff}#strip .cur{background:var(--gold);border-color:var(--gold)}
+#start{position:fixed;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3vh;z-index:9}
+#start h2{font-size:5vh;font-weight:800}#start p{font-size:2.6vh;max-width:70vw;text-align:center}
+#start button{font-size:3vh;font-weight:800;padding:2vh 3vw;border:3px solid var(--navy);border-radius:1vh;cursor:pointer;background:var(--gold);color:var(--navy)}
+#start button.alt{background:#fff}
+.btns{display:flex;gap:2vw}
+#ctl{display:flex;gap:.8vw;align-items:center;margin-top:1.6vh}#ctl button{font-size:1.9vh;font-weight:700;padding:.8vh 1.2vw;border:2px solid var(--navy);background:#fff;color:var(--navy);border-radius:.8vh;cursor:pointer}#ctl button:hover{background:var(--gold)}#ctl span{font-size:1.7vh;margin-left:auto}#strip div{cursor:pointer}
+#oldhelp{position:fixed;top:5.6vh;right:2.5vw;font-size:1.5vh;color:var(--navy)}
+</style></head><body>
+<div id="app"><header><h1>BITS F459 · Lab 8 · Team A against Team B</h1><div id="now"></div></header>
+<main><section id="left"><div id="title"></div><div id="sub"></div><ul id="lines"></ul><div id="print"><b>Print</b><code id="pr"></code></div></section>
+<section id="right"><div id="mins"></div><div id="count"></div><div id="ends"></div><div id="barwrap"><div id="bar"></div></div><div id="next"></div></section></main>
+<div id="strip"></div><div id="ctl"><button id="now1">Start Task 1 now</button><button id="prev">&#9664; Previous</button><button id="minus">&minus;1 min</button><button id="pause">Pause</button><button id="plus">+1 min</button><button id="nxt">Next &#9654;</button><button id="mute">Sound on</button><span>Keys: &larr; &rarr; move &middot; Space pause &middot; + / &minus; minute &middot; click any task above to jump to it</span></div></div>
+
+<script>
+const TASKS=[{"key": "T1", "title": "Task 1 · Patches, labels, split", "mins": 5, "lines": ["Download your team's three photographs and their label images (links in your notebook).", "For every patch: x₁ = mean grey ÷ 25, x₂ = (Sobel strength > 20 pixels) ÷ 40, as in Lab 7.", "Keep only patches that are at least 70% sky, road or tree. Target t = +1 for road, −1 otherwise.", "Join photographs 1, 2, 3 in patch order. Positions 0, 2, 4, … train; 1, 3, 5, … test."], "print": "T1 = {\"n_train\", \"n_test\", \"road_train\", \"road_test\"}"}, {"key": "T2", "title": "Task 2 · XOR on four points", "mins": 5, "lines": ["s = d₄ + 1, where d₁ d₂ d₃ d₄ are the four digits before the last letter of your BITS ID.", "Points (0,0) −1, (0,s) +1, (s,0) +1, (s,s) −1.", "(a) Best accuracy any straight line can reach on these four points.", "(b) Weights of a 2-2-1 network with step units that gets all four right."], "print": "T2 = {\"best_line\", \"W\" (2×2), \"b\" (2), \"v\" (2), \"c\"}"}, {"key": "T3", "title": "Task 3 · SLP, the first five updates", "mins": 8, "lines": ["Input (1, x₁, x₂). Start w = [(d₁−5)/10, (d₂−5)/10, (d₃−5)/10], learning rate η = (d₄+1)/10.", "y = sgn(w·x), with sgn(0) = +1. Visit training patches in order.", "When y ≠ t:  w ← w + η (t − y) x.", "Report w after each of the first five updates, to 4 decimals."], "print": "T3 = [[w0, w1, w2] × 5]"}, {"key": "T4", "title": "Task 4 · Train the SLP", "mins": 7, "lines": ["From the same start, run 20 epochs of the same rule.", "After each epoch, keep the weights if their training accuracy is the best so far (strictly better).", "Report the training and test accuracy of the kept weights."], "print": "T4 = {\"train_acc\", \"test_acc\"}"}, {"key": "T5", "title": "Task 5 · The wall", "mins": 8, "lines": ["Search every straight line w₀ + w₁x₁ + w₂x₂ on the training patches.", "Report the line with the highest training accuracy, and that accuracy.", "This is the best any single-layer perceptron can ever do on these features."], "print": "T5 = {\"w\": [w0, w1, w2], \"best_acc\"}"}, {"key": "T6", "title": "Task 6 · Beat the wall with one feature", "mins": 8, "lines": ["Design one extra feature f(x₁, x₂), written as a Python expression in x1 and x2.", "Train an SLP on (1, x₁, x₂, f) any way you like.", "Pass: at least 92% on the test patches."], "print": "T6 = {\"feature\": \"<expression>\", \"w\": [w0, w1, w2, w3]}"}, {"key": "T7", "title": "Task 7 · MLP 2-3-1, forward pass", "mins": 7, "lines": ["Inputs x₁/10, x₂/10. Sigmoid hidden and output units.", "Start wₖ = ((k·(d₄+1)) mod 7 − 3)/10 for k = 1 … 13, in the order w11 w12 b1 w21 w22 b2 w31 w32 b3 v1 v2 v3 c.", "Your patch: training position (10·d₃ + d₄) mod n_train.", "Report the three hidden outputs h and the output o."], "print": "T7 = {\"sample\", \"h\": [h1, h2, h3], \"o\"}"}, {"key": "T8", "title": "Task 8 · One backprop step", "mins": 10, "lines": ["Target 1 if your patch is road, else 0. Loss = ½ (o − t)².", "Compute the gradient of the loss for all 13 weights, in the same order as Task 7.", "Report them to 4 decimals. Do not update the weights."], "print": "T8 = [13 gradients]"}, {"key": "T9", "title": "Task 9 · Fewest hidden units", "mins": 9, "lines": ["Train 2-H-1 networks (inputs x/10, sigmoid units, road when output > 0.5) any way you like.", "Find the fewest hidden units H that reach 92% on the test patches.", "Report the weights of that network."], "print": "T9 = {\"W1\": H×2, \"b1\": H, \"w2\": H, \"b2\"}"}, {"key": "T10", "title": "Task 10 · Against the other team", "mins": 8, "lines": ["Run your best model (Task 6 or Task 9) on all clear patches of the other team's photographs.", "The other team's model: SLP on (1, x₁, x₂, (x₁−5)²).  Team A's: [10.0, 0.28, -3.84, -1.15].  Team B's: [10.0, 0.74, -4.64, -1.08].", "Find a point (x₁, x₂), 0 ≤ x₁ ≤ 11, 0 ≤ x₂ ≤ 9, that your model calls road and theirs calls not road."], "print": "T10 = {\"model\", \"other_acc\", \"point\": [x1, x2]}"}, {"key": "OPEN", "title": "Open round · Best on the other team's photos", "mins": 8, "lines": ["Any model with at most 15 weights.", "Score: accuracy on all clear patches of the other team's photographs.", "Post every improvement on the live board. Bonus: leading team +1, top three in the class +1. Total capped at 10."], "print": "OPEN = {model}"}];
+const CLOSE={key:"END",title:"Time. Board closed.",mins:2,lines:["Run your last cell: it prints one line starting with LAB08.","File → Download .ipynb. Keep the name lab08_teamA.ipynb or lab08_teamB.ipynb.","Upload it to your repository f459-<your BITS ID>, and check the LAB08 line is visible on GitHub.","The bonus is decided from your notebooks, not from the board."],print:"LAB08 {...}"};
+const ALL=TASKS.concat([CLOSE]);
+let idx=-1, tStart=0, waitUntil=0, paused=false, pausedLeft=0, muted=false, ctx=null;
+const $=id=>document.getElementById(id);
+function fmt(d){let h=d.getHours(),m=d.getMinutes();return (h%12||12)+":"+String(m).padStart(2,"0")+" "+(h>=12?"PM":"AM")}
+function chime(big){ if(muted||!ctx)return; try{ctx.resume()}catch(e){} const f=big?[523,659,784,1047]:[880,1320,1760]; const n=ctx.currentTime;
+  f.forEach((hz,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type="sine";o.frequency.value=hz;
+  const s=n+i*0.18;g.gain.setValueAtTime(0,s);g.gain.linearRampToValueAtTime(0.35,s+0.02);g.gain.exponentialRampToValueAtTime(0.001,s+(big?2.6:1.6));
+  o.connect(g).connect(ctx.destination);o.start(s);o.stop(s+(big?2.7:1.7));});}
+function build(){ $("strip").innerHTML=ALL.map((t,k)=>`<div data-k="${k}">${t.key==="OPEN"?"Open":t.key==="END"?"Submit":t.key}</div>`).join("");
+  [...$("strip").children].forEach(d=>d.onclick=()=>show(+d.dataset.k)); }
+function show(i){ if(i<0)i=0; if(i>=ALL.length)i=ALL.length-1; idx=i; tStart=Date.now(); paused=false; $("pause").textContent="Pause";
+  const t=ALL[i], end=new Date(tStart+t.mins*60000);
+  $("title").textContent=t.title;
+  $("sub").textContent=(t.key==="END"?"":"Released "+fmt(new Date(tStart))+" · ends "+fmt(end)+" · same task for Team A and Team B");
+  $("lines").innerHTML=t.lines.map(()=>"<li></li>").join(""); [...$("lines").children].forEach((li,k)=>li.textContent=t.lines[k]);
+  $("pr").parentNode.style.visibility="visible"; $("pr").textContent=t.print; $("mins").textContent=t.key==="END"?"Submit":t.mins+" min";
+  $("ends").textContent="ends at "+fmt(end); $("next").textContent=i+1<ALL.length?"Next: "+ALL[i+1].title:"";
+  [...$("strip").children].forEach((d,k)=>d.className=k<i?"done":k===i?"cur":"");
+  chime(t.key==="END"); tick(); }
+function waiting(){ idx=-1; $("title").textContent="Task 1 is released at "+fmt(new Date(waitUntil)); $("sub").textContent="Find your team in the README, open your team's notebook and the live board.";
+  $("lines").innerHTML=""; $("pr").parentNode.style.visibility="hidden"; $("mins").textContent="Starts in"; $("ends").textContent="at "+fmt(new Date(waitUntil)); $("next").textContent="First: "+ALL[0].title;
+  [...$("strip").children].forEach(d=>d.className=""); }
+function left(){ if(idx<0) return waitUntil-Date.now(); if(paused) return pausedLeft; return tStart+ALL[idx].mins*60000-Date.now(); }
+function tick(){ $("now").textContent=fmt(new Date());
+  if(idx===-1 && waitUntil){ if(Date.now()>=waitUntil){ show(0); return; } }
+  if(idx===-1 && !waitUntil) return;
+  let rem=left();
+  if(idx>=0 && !paused && rem<=0){ if(idx+1<ALL.length){ show(idx+1); return; } rem=0; }
+  const s=Math.max(0,Math.ceil(rem/1000)); const h=Math.floor(s/3600),m=Math.floor(s%3600/60),ss=s%60;
+  $("count").textContent=(h?h+":"+String(m).padStart(2,"0"):m)+":"+String(ss).padStart(2,"0");
+  $("count").className=(idx>=0&&rem<=60000)?"warn":"";
+  $("bar").style.width= idx>=0 ? Math.min(100,Math.max(0,100*rem/(ALL[idx].mins*60000)))+"%" : "100%";
+}
+function togglePause(){ if(idx<0)return; if(!paused){ pausedLeft=left(); paused=true; $("pause").textContent="Resume"; }
+  else { tStart=Date.now()-(ALL[idx].mins*60000-pausedLeft); paused=false; $("pause").textContent="Pause";
+    $("sub").textContent=ALL[idx].key==="END"?"":"Released "+fmt(new Date(tStart))+" · ends "+fmt(new Date(tStart+ALL[idx].mins*60000))+" · same task for Team A and Team B";
+    $("ends").textContent="ends at "+fmt(new Date(tStart+ALL[idx].mins*60000)); } tick(); }
+function addTime(ms){ if(idx<0)return; if(paused) pausedLeft=Math.max(0,pausedLeft+ms); else tStart+=ms;
+  const e=new Date((paused?Date.now()+pausedLeft:tStart+ALL[idx].mins*60000)); $("ends").textContent="ends at "+fmt(e); tick(); }
+function unlock(){ if(!ctx){ try{ctx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){} try{navigator.wakeLock&&navigator.wakeLock.request("screen").catch(()=>{});}catch(e){} } else { try{ctx.resume()}catch(e){} } }
+document.addEventListener("pointerdown",unlock,true); document.addEventListener("keydown",unlock,true);
+function go(now){ try{ctx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}
+  try{navigator.wakeLock&&navigator.wakeLock.request("screen").catch(()=>{});}catch(e){}
+  if(now){ waitUntil=0; show(0); } else { const d=new Date(); d.setHours(13,55,0,0); waitUntil=d.getTime(); if(Date.now()>=waitUntil) show(0); else { waiting(); tick(); } } }
+
+$("prev").onclick=()=>show(idx<=0?0:idx-1); $("nxt").onclick=()=>show(idx+1); $("now1").onclick=()=>show(0); $("pause").onclick=togglePause;
+$("plus").onclick=()=>addTime(60000); $("minus").onclick=()=>addTime(-60000); $("mute").onclick=()=>{muted=!muted;$("mute").textContent=muted?"Sound off":"Sound on"};
+document.addEventListener("keydown",e=>{
+  if(["ArrowRight","PageDown"].includes(e.key)){show(idx+1);e.preventDefault()}
+  if(["ArrowLeft","PageUp"].includes(e.key)){show(idx<=0?0:idx-1);e.preventDefault()}
+  if(e.key===" "){togglePause();e.preventDefault()} if(e.key==="+"||e.key==="=")addTime(60000); if(e.key==="-")addTime(-60000);
+  if(e.key==="m"||e.key==="M")$("mute").click(); });
+build(); { const d=new Date(); d.setHours(13,55,0,0); waitUntil=d.getTime(); if(Date.now()<waitUntil) waiting(); else { waitUntil=0; idx=-1; $("title").textContent="Click T1 (or press →) to start Task 1"; $("sub").textContent=""; $("pr").parentNode.style.visibility="hidden"; $("mins").textContent=""; $("count").textContent=""; $("ends").textContent=""; } }
+setInterval(tick,250); tick();
+</script></body></html>
