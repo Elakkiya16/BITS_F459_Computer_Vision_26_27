@@ -5,7 +5,7 @@
 **BITS F459 · Computer Vision · CNNs**
 
 ![Time](https://img.shields.io/badge/⏱%20work-90%20minutes-00D9FF?style=for-the-badge)
-![Marks](https://img.shields.io/badge/marks-10-FF6B6B?style=for-the-badge)
+![Marks](https://img.shields.io/badge/marks-10%20+%20bonus-FF6B6B?style=for-the-badge)
 ![Runs](https://img.shields.io/badge/runs%20in-Colab%20·%20no%20install-FFD93D?style=for-the-badge)
 ![Submit](https://img.shields.io/badge/submit-lab09.ipynb-6BCB77?style=for-the-badge)
 
@@ -36,8 +36,9 @@ same thing, step by step, on **your own three classes of CIFAR-10** colour photo
 | | |
 |:--|:--|
 | **1:50 – 1:55 PM** | Open the notebook and the live board, run Setup |
-| **1:55 – 3:15 PM** | Demo and tasks, Sections 1 to 12, released on the clock |
-| **3:15 – 3:20 PM** | Run the Hand in cell, download, upload |
+| **1:55 – 3:05 PM** | Demo and tasks, Sections 1 to 12, released on the clock |
+| **3:05 – 3:30 PM** | Section 13 open round: beat your own baseline, live leaderboard |
+| **3:30 – 3:40 PM** | Run the Hand in cell, download, upload |
 
 ---
 
@@ -47,6 +48,9 @@ same thing, step by step, on **your own three classes of CIFAR-10** colour photo
   S2 + S3 · S4 + S5 · S6 + S7 · S8 · S9 + S10 · S11 + S12.
 - **Four marks from the live board:** B4, B6, B8 and B10. B10 must match your own confusion matrix.
   B12 is a guess and carries no mark.
+- **Open round bonus (Section 13).** +1 if your improved network beats your own Section 10 accuracy by at
+  least 2 points within your parameter budget, and +1 to the three best in the class. The bonus makes up
+  lost marks; the total stays at most 10.
 - A notebook run with someone else's BITS ID scores nothing.
 
 ---
@@ -55,6 +59,7 @@ same thing, step by step, on **your own three classes of CIFAR-10** colour photo
 
 - [ ] The Setup cell shows **your** BITS ID
 - [ ] Every section prints its line and has its one-line inference
+- [ ] Your best open-round result is in column B13 of the live board
 - [ ] The Hand in cell prints one line starting with `LAB09`
 - [ ] Downloaded, kept the name `lab09.ipynb`, uploaded to `f459-<your BITS ID, lowercase>`
 - [ ] You opened it on GitHub and saw the `LAB09` line
