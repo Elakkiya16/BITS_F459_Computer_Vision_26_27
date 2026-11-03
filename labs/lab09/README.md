@@ -26,6 +26,8 @@ same thing, step by step, on **your own three classes of CIFAR-10** colour photo
 - When the demo finishes a section, the task for that section appears on the clock screen. Do it in
   the empty cell under the same heading, print the line the heading asks for, and write **one line
   of inference** in the cell below it.
+- **Live board:** [open the sheet](https://docs.google.com/spreadsheets/d/1Av5zW3LoIZkISvn4tBXggqMvJKZ9s1eBDP4t4AiGdf4/edit) while signed in
+  with your **BITS Google account** (fXXXXXXXX@dubai.bits-pilani.ac.in). Only your own row is editable.
 - When the screen says **Live board first**, work the number out from the formula and type it in
   **your row** of the live board **before** you run the cell that checks it.
 
