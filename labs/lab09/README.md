@@ -17,7 +17,7 @@
 
 ## 🎯 Today
 
-The demo on the screen builds a CNN on the whole of CIFAR-10, one small step at a time. You build the
+The demo on the screen builds a CNN on EuroSAT satellite photographs, one small step at a time. You build the
 same thing, step by step, on **your own three classes of CIFAR-10** colour photographs, with
 **your own network settings** from your BITS ID.
 
