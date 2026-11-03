@@ -31,6 +31,24 @@ same thing, step by step, on **your own three classes of CIFAR-10** colour photo
 
 ---
 
+## 📥 Load your data (Section 2)
+
+Paste this in the empty cell under **2. Data Exploration**. It loads CIFAR-10 from Hugging Face in under a minute.
+
+```python
+from datasets import load_dataset
+import numpy as np
+cifar = load_dataset("uoft-cs/cifar10")
+Xtr = np.stack(cifar["train"]["img"]);  ytr = np.array(cifar["train"]["label"])
+Xte = np.stack(cifar["test"]["img"]);   yte = np.array(cifar["test"]["label"])
+print(Xtr.shape, ytr.shape, Xte.shape, yte.shape)
+```
+
+It prints `(50000, 32, 32, 3) (50000,) (10000, 32, 32, 3) (10000,)`. Labels 0 to 9 are airplane, automobile, bird,
+cat, deer, dog, frog, horse, ship, truck. If Colab says `datasets` is not found, run `!pip install datasets` first.
+
+---
+
 ## ⏱ How the session runs
 
 | | |
