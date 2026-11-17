@@ -52,7 +52,7 @@ ROOT = os.path.dirname(glob.glob(os.path.join(p if os.path.isdir(p) else os.path
 q = keras.utils.get_file(origin="https://s3.amazonaws.com/fast-ai-imageclas/imagenette2-160.tgz", extract=True)
 VAL = glob.glob(os.path.join(q if os.path.isdir(q) else os.path.dirname(q), "**", "val"), recursive=True)[0]
 WNID = {"n01440764": 0, "n02102040": 217, "n02979186": 482, "n03000684": 491, "n03028079": 497,
-        "n03394916": 566, "n03417042": 569, "n03425413": 571, "n03445777": 574, "n03888605": 701}
+        "n03394916": 566, "n03417042": 569, "n03425413": 571, "n03445777": 574, "n03888257": 701}
 ```
 
 `VAL` holds one folder per class, named by WordNet ID; `WNID` gives the ImageNet output index of each folder, in
