@@ -1,6 +1,9 @@
 # BITS F459 Computer Vision - added in Week 4 (deep learning)
 # pip install -r setup/requirements-dl.txt
-# CPU-only wheels are fine for Weeks 4-5; use Colab's GPU from Week 6.
+# Colab already has all of these; this file is for running the labs on your own machine (CPU is enough).
 -r requirements.txt
 torch>=2.2
 torchvision>=0.17
+tensorflow>=2.16        # Keras 3: Labs 9 and 10 (keras.applications, pretrained ImageNet models)
+seaborn>=0.13           # Lab 9 confusion-matrix plots
+datasets>=2.18          # Hugging Face datasets: CIFAR-10 in Lab 9
